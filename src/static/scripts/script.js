@@ -7,35 +7,34 @@ const Engine = Matter.Engine,
 
 let engine
 let world
-let boxys = []
+let circles = []
+let boundaries = []
 
 let ground
-
-const option = {
-  isStatic: true
-}
 
 function setup() {
   createCanvas(400, 400)
   engine = Engine.create()
   world = engine.world
-  Matter.Runner.run(engine)
-  ground = Bodies.rectangle(200, height, width, 10, option)
-  World.add(world, ground)
+  boundaries.push(new Boundary(50, height / 6, width, 3, 0.4))
+  boundaries.push(new Boundary(400, height / 3, width, 3, -0.4))
+  boundaries.push(new Boundary(50, height / 2, width, 3, 0.4))
+  boundaries.push(new Boundary(400, height / 1.5, width, 3, -0.4))
 }
 
-function mousePressed() {
-  boxys.push(new Boxy(mouseX, mouseY, random(10, 40), random(10, 40)))
+function mouseDragged() {
+  circles.push(new Circle(mouseX, mouseY, random(10, 20)))
 }
 
 function draw() {
-  background(51)
+  background(0, 191, 255)
+  Engine.update(engine)
 
-  for (let i = 0; i < boxys.length; i++) {
-    boxys[i].onShow()
+  for (let i = 0; i < circles.length; i++) {
+    circles[i].onShow()
   }
 
-  stroke(255)
-  strokeWeight(4)
-  rect(0, height, width, height)
+  for (let i = 0; i < boundaries.length; i++) {
+    boundaries[i].onShow()
+  }
 }

@@ -1,13 +1,12 @@
-class Boxy {
-  constructor(x, y, w, h) {
+class Circle {
+  constructor(x, y, r) {
     const options = {
-      friction: 0.5,
-      restitution: 0.5
+      friction: 0,
+      restitution: 0
     }
 
-    this.body = Bodies.rectangle(x, y, w, h, options)
-    this.w = w
-    this.h = h
+    this.body = Bodies.circle(x, y, r, options)
+    this.r = r
     Matter.World.add(world, this.body)
   }
 
@@ -19,10 +18,10 @@ class Boxy {
     translate(pos.x, pos.y)
     rotate(angle)
     rectMode(CENTER)
-    strokeWeight(6)
+    strokeWeight(0)
     stroke(140)
-    fill(120)
-    rect(0, 0, this.w, this.h)
+    fill(52,59,41)
+    ellipse(0, 0, this.r * 2)
     pop()
   }
 }
