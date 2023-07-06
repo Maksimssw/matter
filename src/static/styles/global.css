@@ -54,8 +54,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--color-dark200);
-}
+  background: url("https://avatars.mds.yandex.net/get-games/1890793/2a0000017e87a0aefb4775947db10024c16e/orig");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+ }
 
 main {
   display: flex;
@@ -221,3 +223,15 @@ i {
   color: var(--color-white);
 }
 
+.block {
+  display: grid;
+  justify-items: center;
+}
+
+.button-spin {
+  padding: 12px 30px;
+  background: var(--color-green200);
+  color: var(--color-white);
+  font-size: 24px;
+  border-radius: 12px;
+}

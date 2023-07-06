@@ -1,14 +1,12 @@
-class Boundary {
-  constructor(x, y, w, h, a) {
+class CircleBoundary {
+  constructor(x, y, r) {
     const option = {
       restitution: 0.5,
       isStatic: true,
-      angle: a
     }
 
-    this.body = Bodies.rectangle(x, y, w, h, option)
-    this.w = w
-    this.h = h
+    this.body = Bodies.circle(x, y, r, option)
+    this.r = r
     World.add(world, this.body)
   }
 
@@ -21,9 +19,9 @@ class Boundary {
     rotate(angle)
     rectMode(CENTER)
     strokeWeight(0)
-    stroke(140)
-    fill(0,128,0)
-    rect(0, 0, this.w, this.h)
+    stroke(0)
+    fill(0)
+    ellipse(0, 0, this.r * 2)
     pop()
   }
 }

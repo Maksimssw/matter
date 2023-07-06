@@ -10,24 +10,38 @@ let world
 let circles = []
 let boundaries = []
 
-let ground
-
 function setup() {
-  createCanvas(400, 400)
+  const canvas = createCanvas(400, 300)
   engine = Engine.create()
   world = engine.world
-  boundaries.push(new Boundary(50, height / 6, width, 3, 0.4))
-  boundaries.push(new Boundary(400, height / 3, width, 3, -0.4))
-  boundaries.push(new Boundary(50, height / 2, width, 3, 0.4))
-  boundaries.push(new Boundary(400, height / 1.5, width, 3, -0.4))
+  canvas.parent('canvas')
+  createCircleBoundaries()
 }
 
-function mouseDragged() {
-  circles.push(new Circle(mouseX, mouseY, random(10, 20)))
+const createCircleBoundaries = () => {
+  for (let i = 0; i < 16; i++) {
+    const linePins = 3 + i;
+    const lineWidth = linePins * 15;
+    for (let n = 0; n < linePins; n++) {
+      boundaries.push(new CircleBoundary(
+        width / 2 - lineWidth / 2 + n * 15,
+        10 + i * 15,
+        3
+      ))
+    }
+  }
 }
+
+const button = document.querySelector('.button-spin')
+
+console.log(document)
+button.addEventListener('click', () => {
+  circles.push(new Circle(width / random(2, 2.2), 0, 4))
+})
 
 function draw() {
-  background(0, 191, 255)
+  clear();
+  background('rgba(0,255,0, 0)')
   Engine.update(engine)
 
   for (let i = 0; i < circles.length; i++) {
