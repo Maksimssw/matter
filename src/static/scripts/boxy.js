@@ -2,12 +2,20 @@ class Circle {
   constructor(x, y, r) {
     const options = {
       friction: 0,
-      restitution: 0.1
+      restitution: 0
     }
 
     this.body = Bodies.circle(x, y, r, options)
     this.r = r
     Matter.World.add(world, this.body)
+  }
+
+  removeFromWorld() {
+    World.remove(world, this.body)
+  }
+
+  getRemove(bodyB) {
+    return this.body.id === bodyB
   }
 
   onShow() {

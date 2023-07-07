@@ -5,6 +5,7 @@
 
   --color-gray100:    #B5B5B5;
 
+  --color-green100:   #48644a;
   --color-green200:   #374D38;
 
   --color-dark100:    #222222;
@@ -54,9 +55,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: url("https://avatars.mds.yandex.net/get-games/1890793/2a0000017e87a0aefb4775947db10024c16e/orig");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background: var(--color-white);
  }
 
 main {
@@ -226,12 +225,256 @@ i {
 .block {
   display: grid;
   justify-items: center;
+  z-index: 2;
 }
 
 .button-spin {
   padding: 12px 30px;
-  background: var(--color-green200);
+  background: var(--color-green100);
   color: var(--color-white);
   font-size: 24px;
+  border-radius: 12px;
+}
+
+.block__wrapper {
+  margin-top: 20px;
+  background: var(--color-green200);
+  display: grid;
+  grid-row-gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  width: 300px;
+  color: var(--color-white);
+}
+
+.block__info {
+  position: fixed;
+  top: 100px;
+  left: 50px;
+}
+
+.block__balance {
+  line-height: 30px;
+  font-size: 28px;
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.area{
+  position: absolute;
+  background: #4e54c8;
+  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+  width: 100%;
+  height:100vh;
+  z-index: 1;
+}
+
+.area-wrapper {
+  padding-top: 0 !important;
+  align-items: center;
+  z-index: 2;
+}
+
+#plinko canvas {
+  background: none !important;
+}
+
+.bg-background {
+  background: none;
+}
+
+.plinko-button {
+  background: #118111;
+  color: white;
+}
+
+.hover\:bg-purpleDark:hover {
+  background-color: #118111 !important;
+}
+
+.focus\:ring-offset-primary:focus {
+  --tw-ring-offset-color: #118111 !important;
+}
+
+.focus\:ring-1:focus {
+  --tw-ring-shadow: none !important;
+}
+
+.plinko-history {
+  top: 50px;
+}
+
+.circles{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.circles__item {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  color: white;
+}
+
+.circles li{
+  position: absolute;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  animation: animate 25s linear infinite;
+  bottom: -150px;
+  background: none;
+}
+
+.circles li:nth-child(1){
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  font-size: 80px;
+  animation-delay: 0s;
+}
+
+
+.circles li:nth-child(2){
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
+}
+
+.circles li:nth-child(3){
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  animation-delay: 4s;
+}
+
+.circles li:nth-child(4){
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  font-size: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+
+.circles li:nth-child(5){
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  animation-delay: 0s;
+}
+
+.circles li:nth-child(6){
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  font-size: 110px;
+  animation-delay: 3s;
+}
+
+.circles li:nth-child(7){
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  font-size: 150px;
+  animation-delay: 7s;
+}
+
+.circles li:nth-child(8){
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 25px;
+  animation-delay: 15s;
+  animation-duration: 45s;
+}
+
+.circles li:nth-child(9){
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+  animation-delay: 2s;
+  animation-duration: 35s;
+}
+
+.circles li:nth-child(10){
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  font-size: 150px;
+  animation-delay: 0s;
+  animation-duration: 11s;
+}
+.circles li:nth-child(10) img {
+  border-radius: 50%;
+}
+
+
+@keyframes animate {
+
+  0%{
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
+  }
+
+  100%{
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+
+}
+
+
+body {
+  font-family: 'Baloo 2', cursive;
+  min-height: 100%;
+  height:'100%';
+  overflow-x:hidden;
+}
+
+.apostar-column {
+  flex-direction: column;
+}
+
+.balance {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  line-height: 30px;
+  font-size: 20px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.apostar-block {
+  background: #04096e;
+}
+
+.balance i {
+  font-style: normal;
+  font-size: 24px;
+  color: green;
+}
+
+.modal-button {
+  width: 100%;
+  background: #118111;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 16px 0;
   border-radius: 12px;
 }

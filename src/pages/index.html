@@ -17,8 +17,32 @@
 <body>
 <main>
     <div class="block">
+        <div class="block__info grid-row justify-content-start">
+            <span data-balance class="block__balance">1000</span>
+            <span class="block__balance">$</span>
+        </div>
         <div id="canvas"></div>
-        <button class="button-spin">Spin</button>
+        <div class="block__wrapper">
+            <div class="block__content grid-row justify-content-between">
+                <p class="block__text">Bid amount</p>
+                <span class="block__bet">10$</span>
+            </div>
+            <button data-spin class="button-spin">Spin</button>
+        </div>
+    </div>
+    <div class="area">
+        <ul class="circles">
+            <li class="circles__item">💲</li>
+            <li class="circles__item">💲</li>
+            <li class="circles__item">💲</li>
+            <li class="circles__item">💲</li>
+            <li class="circles__item">💲</li>
+            <li class="circles__item">💲</li>
+            <li class="circles__item">💲</li>
+            <li class="circles__item">💲</li>
+            <li class="circles__item">💲</li>
+            <li class="circles__item">💲</li>
+        </ul>
     </div>
 </main>
 <script src="../static/scripts/script.js"></script>
