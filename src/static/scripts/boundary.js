@@ -45,12 +45,12 @@ class Block {
     const pos = this.body.position
 
     push()
-    image(this.img, pos.x, pos.y - 10);
-    translate(pos.x, pos.y + 10)
+    image(this.img, pos.x - 10, pos.y - 10);
+    translate(pos.x, pos.y)
     rectMode(CENTER)
     strokeWeight(0)
     stroke(0)
-    noFill()
+    noFill(0)
     rect(0, 0, this.w, this.h)
     pop()
   }
