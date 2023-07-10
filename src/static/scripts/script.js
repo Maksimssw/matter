@@ -7,9 +7,11 @@ const Engine = Matter.Engine,
 
 let engine
 let world
-let circles = []
-let boundaries = []
-let blocks = []
+
+const circles = []
+const boundaries = []
+const blocks = []
+const walls = []
 
 function setup() {
   const canvas = createCanvas(400, 265)
@@ -39,9 +41,12 @@ const bonuses = [5, 3, 1.5, 1, 0.5, 0.3, 0.3, 0.3, 0.5, 1, 1.5, 3, 5]
 const createBlock = () => {
   for (let i = 0; i < 13; i++) {
     const img = loadImage(`../static/images/multipliers/multiplier${bonuses[i]}.png`)
-    const x = 75 + 20 * i
-    blocks.push(new Block(x, height - 10, 15, 15, bonuses[i], img))
+    const x = 73 + 20 * i
+    blocks.push(new Block(x, height - 5, 15, 35, bonuses[i], img))
   }
+
+  walls.push(new Wall(40, height, 40, width))
+  walls.push(new Wall(width - 55, height, 40, width))
 }
 
 const collisionBlock = () => {
@@ -49,24 +54,17 @@ const collisionBlock = () => {
     const bodyA = event.source.pairs.list[0].bodyA.id
     const bodyB = event.source.pairs.list[0].bodyB.id
 
-    if (event.source.pairs.length === 0) {
-      console.log(circles)
-    }
-
+    console.log(world.bodies[bodyA])
     if (world.bodies[bodyA].label === "Rectangle Body") {
-      button.removeAttribute('disabled')
-
-      circles[0].removeFromWorld()
-      circles.splice(0, 1);
-
-      console.log(circles)
-      console.log(world)
-
-      for (let b = 0; b < blocks.length; b++) {
-        if (blocks[b].body.id === bodyA) {
-          updateBalance(blocks[b].bonus)
+      for (let i = 0; i < circles.length; i++) {
+        if (circles[i].body.id === bodyB) {
+          circles[i].removeFromWorld()
+          circles.splice(i, 1);
+          i--
         }
       }
+
+      updateBalance(world.bodies[bodyA].bonus)
     }
   })
 }
@@ -75,7 +73,12 @@ const button = document.querySelector('.button-spin')
 
 button.addEventListener('click', () => {
   button.setAttribute('disabled', 'disabled')
+
   circles.push(new Circle(width / random(2, 2.2), 0, 4))
+
+  setTimeout(() => {
+    button.removeAttribute('disabled')
+  }, 1000)
 })
 
 function draw() {
@@ -93,6 +96,10 @@ function draw() {
 
   for (let i = 0; i < blocks.length; i++) {
     blocks[i].onShow()
+  }
+
+  for (let i = 0; i < walls.length; i++) {
+    walls[i].onShow()
   }
 }
 const spin = document.querySelector('[data-spin]')

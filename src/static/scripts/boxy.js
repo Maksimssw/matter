@@ -7,7 +7,7 @@ class Circle {
 
     this.body = Bodies.circle(x, y, r, options)
     this.r = r
-    Matter.World.add(world, this.body)
+    World.add(world, this.body)
   }
 
   removeFromWorld() {

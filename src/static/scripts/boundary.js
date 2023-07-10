@@ -31,6 +31,7 @@ class Block {
     const option = {
       restitution: 0.5,
       isStatic: true,
+      bonus: bonus
     }
 
     this.body = Bodies.rectangle(x, y, w, h, option)
@@ -45,7 +46,35 @@ class Block {
     const pos = this.body.position
 
     push()
-    image(this.img, pos.x - 10, pos.y - 10);
+    image(this.img, pos.x - 10, pos.y - 20);
+    translate(pos.x, pos.y)
+    rectMode(CENTER)
+    strokeWeight(0)
+    stroke(0)
+    noFill(0)
+    rect(0, 0, this.w, this.h)
+    pop()
+  }
+}
+
+class Wall {
+  constructor(x, y, w, h) {
+    const options = {
+      isStatic: true,
+      bonus: 5
+    }
+
+    this.body = Bodies.rectangle(x, y, w, h, options)
+    this.bonus = 5
+    this.w = w
+    this.h = h
+    World.add(world, this.body)
+  }
+
+  onShow() {
+    const pos = this.body.position
+
+    push()
     translate(pos.x, pos.y)
     rectMode(CENTER)
     strokeWeight(0)
